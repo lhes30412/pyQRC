@@ -29,11 +29,10 @@ class getoutData:
                         self.TERMINATION = "normal"
 
         def getSPenergy(self, outlines, format):
-            if format == "Gaussian:":
+            if format == "Gaussian":
                 for i in range(0, len(outlines)):
-                    if outlines[i].find("SCF Done") > -1:
-                        print("Found SCF Results!!")
-                        self.SPENERGY = outlines[i].split()[3]
+                    if outlines[i].find("SCF Done:") > -1:
+                        self.SPENERGY = float(outlines[i].split()[4])
 
         outfile = open(file, "r")
         outlines = outfile.readlines()
@@ -50,23 +49,26 @@ def main():
     _path = "/home/lhes30412/TTA/Code/NDIC2/No15/631Gdp/B3LYP-D3BJ/freq_scan/mode_5/minus/"
     energies = []
 
-    for i in range(1, 21):
-        print("No " + str(i) + ":")
+    for i in range(20, 0, -1):
         file = _path + str(i) + "/output.log"
         _sp = getoutData(file)
-        energies.append(_sp.SPENERGY)
-        print()
+        energies.append(_sp.SPENERGY * 27.2107)
 
     _path = "/home/lhes30412/TTA/Code/NDIC2/No15/631Gdp/B3LYP-D3BJ/freq_scan/mode_5/positive/"
 
     for i in range(1, 21):
         file = _path + str(i) + "/output.log"
-        print("No" + str(i+20) + ":")
         _sp = getoutData(file)
-        energies.append(_sp.SPENERGY)
-        print()
+        energies.append(_sp.SPENERGY * 27.2107)
 
-    print(energies)
+    Q_points = np.linspace(-2, 2, 40, endpoint=True)
+
+    fig = plt.figure()
+    plt.plot(Q_points, energies, 'o-')
+    plt.title(" PES along normal mode 5")
+    plt.ylabel("Energy (eV)")
+    plt.xlabel("Q")
+    plt.show()
 
 
 if __name__ == "__main__":
