@@ -148,6 +148,7 @@ class getoutData:
         getATOMTYPES(self, outlines, "Gaussian")
         getFREQS(self, outlines, self.NATOMS, "Gaussian")
         getMASSES(self, outlines, "Gaussian")
+        outfile.close()
 
 
 class gen_qrc:

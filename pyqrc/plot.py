@@ -43,6 +43,7 @@ class getoutData:
             print("Wrong Termination!!")
 
         getSPenergy(self, outlines, "Gaussian")
+        outfile.close()
 
 
 def main():
