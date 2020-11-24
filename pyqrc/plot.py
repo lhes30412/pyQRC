@@ -47,7 +47,7 @@ class getoutData:
 
 
 def main():
-    _path = "/home/lhes30412/TTA/Code/NDIC2/No15/631Gdp/B3LYP-D3BJ/freq_scan/mode_5/minus/"
+    _path = "/home/lhes30412/TTA/Code/NDIC2/No15/631Gdp/B3LYP-D3BJ/freq_scan/mode_2/minus/"
     energies = []
 
     for i in range(20, 0, -1):
@@ -55,7 +55,7 @@ def main():
         _sp = getoutData(file)
         energies.append(_sp.SPENERGY * 27.2107)
 
-    _path = "/home/lhes30412/TTA/Code/NDIC2/No15/631Gdp/B3LYP-D3BJ/freq_scan/mode_5/positive/"
+    _path = "/home/lhes30412/TTA/Code/NDIC2/No15/631Gdp/B3LYP-D3BJ/freq_scan/mode_2/positive/"
 
     for i in range(1, 21):
         file = _path + str(i) + "/output.log"
@@ -66,7 +66,7 @@ def main():
 
     fig = plt.figure()
     plt.plot(Q_points, energies, 'o-')
-    plt.title(" PES along normal mode 5")
+    plt.title("NDIC2_15 PES along normal mode 2")
     plt.ylabel("Energy (eV)")
     plt.xlabel("Q")
     plt.show()
